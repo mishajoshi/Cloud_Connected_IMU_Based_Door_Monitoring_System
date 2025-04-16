@@ -1,0 +1,6 @@
+*/Certificates/
+env/
+Assignment Docs/
+*.csv
+.env
+env_variables_linux.sh

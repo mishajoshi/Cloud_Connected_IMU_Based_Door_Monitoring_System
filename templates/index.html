@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Door Status Monitor</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+    .container {
+      margin-top: 20px;
+    }
+    #update-log-table {
+      margin-top: 20px;
+      background-color: #ffffff;
+    }
+    #update-log-table th, #update-log-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    #update-log-table th {
+      background-color: #2978A0;
+      color: white;
+    }
+    .control-buttons {
+      margin-bottom: 20px;
+    }
+    #btn-stop {
+      background-color: #C20114;
+      border-color: #C20114;
+      color: white;
+    }
+    #btn-stop:hover {
+      background-color: #d95555;
+      border-color: #d95555;
+    }
+    #btn-pause {
+      background-color: #ECA400;
+      border-color: #ECA400;
+      color: white;
+    }
+    #btn-pause:hover {
+      background-color: #d19a00;
+      border-color: #d19a00;
+    }
+    #btn-resume {
+      background-color: #02C39A;
+      border-color: #02C39A;
+      color: white;
+    }
+    #btn-resume:hover {
+      background-color: #029a87;
+      border-color: #029a87;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Door Status Monitor App</h1>
+    
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <h4>Current Door Status: <span id="status">Unknown</span></h4>
+      </div>
+      <div class="col-md-4">
+        <h4>Last Update: <span id="timestamp">N/A</span></h4>
+      </div>
+      <div class="col-md-4">
+        <h4>Connection Status: <span id="connection-status">Unknown</span></h4>
+      </div>
+    </div>
+    
+    <!-- Control Buttons -->
+    <div class="row control-buttons mb-3">
+      <div class="col-md-3 text-center">
+        <button id="btn-stop" class="btn btn-block">Stop</button>
+      </div>
+      <div class="col-md-3 text-center">
+        <button id="btn-pause" class="btn btn-block">Pause</button>
+      </div>
+      <div class="col-md-3 text-center">
+        <button id="btn-resume" class="btn btn-block">Resume</button>
+      </div>
+      <div class="col-md-3 text-center">
+        <button id="btn-clear" class="btn btn-secondary btn-block">Clear</button>
+      </div>
+    </div>
+    
+    <h3>Update Log</h3>
+    <table id="update-log-table" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Door State</th>
+        </tr>
+      </thead>
+      <tbody id="update-log"></tbody>
+    </table>
+  </div>
+</body>
+</html>
